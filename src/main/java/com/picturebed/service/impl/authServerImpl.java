@@ -1,6 +1,7 @@
 package com.picturebed.service.impl;
 
 
+import com.picturebed.common.response.constants.Constants;
 import com.picturebed.common.response.enums.ResponseCodeEnum;
 import com.picturebed.exception.BusinessException;
 import com.picturebed.mapper.userMapper;
@@ -8,7 +9,12 @@ import com.picturebed.model.dto.LoginDto;
 import com.picturebed.model.dto.RegisterDto;
 import com.picturebed.model.entity.User;
 import com.picturebed.service.authServer;
+import com.picturebed.util.JwtUtils;
+import com.picturebed.util.RedisUtils;
 import jakarta.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,6 +27,13 @@ public class authServerImpl implements authServer {
 
   @Resource
   private userMapper userMapper;
+
+  @Resource
+  private JwtUtils jwtUtils;
+
+  @Resource
+  private RedisUtils<User> redisUtils;
+
 
   @Override
   public void register(RegisterDto registerDto) {
@@ -41,7 +54,7 @@ public class authServerImpl implements authServer {
   }
 
   @Override
-  public void login(LoginDto loginDto) {
+  public String login(LoginDto loginDto) {
 
     // TODO 登录md5 密码 加密
     User user = userMapper.selectUserByEmailAndPassWord(loginDto.getEmail(),
@@ -50,6 +63,12 @@ public class authServerImpl implements authServer {
       throw new BusinessException(ResponseCodeEnum.CODE_400, "账户或密码错误");
     }
 
-    //TODO 登录成功返回 Token , 将 token 保存在 redis
+    Map<String, String> map = new HashMap<>();
+    map.put("email", user.getEmail());
+    map.put("userId", String.valueOf(user.getId()));
+    String token = jwtUtils.generateToken(map);
+    redisUtils.setWithExpire(Constants.REDIS_KEY_USER_CODE + user.getEmail(), user, 7,
+                             TimeUnit.DAYS);
+    return token;
   }
 }

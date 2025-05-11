@@ -36,4 +36,11 @@ public class ImageMapperSqlProvider {
       WHERE("original_name=#{originalName}");
     }}.toString();
   }
+
+  public String selectImageList() {
+    return new SQL() {{
+      SELECT("*");
+      FROM("image");
+    }}.toString();
+  }
 }

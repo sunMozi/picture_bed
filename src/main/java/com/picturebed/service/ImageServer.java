@@ -1,7 +1,9 @@
 package com.picturebed.service;
 
 
-import org.springframework.web.multipart.MultipartFile;
+import com.github.pagehelper.PageInfo;
+import com.picturebed.model.entity.Image;
+import java.util.List;
 
 /**
  * @author moZiA
@@ -11,4 +13,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface ImageServer {
 
 
+  PageInfo<Image> imageAll(Integer pageNum, Integer pageSize);
 }

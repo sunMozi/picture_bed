@@ -7,6 +7,8 @@ import com.picturebed.model.dto.RegisterDto;
 import com.picturebed.service.authServer;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-@RequestMapping("/auth")
 public class authController {
 
   @Resource
@@ -32,9 +33,10 @@ public class authController {
   }
 
   @PostMapping("/login")
-  public AjaxResult<String> login(@Valid @RequestBody LoginDto loginDto) {
-    authServer.login(loginDto);
-    return AjaxResult.success("登录成功");
+  public AjaxResult<Map<String, String>> login(@Valid @RequestBody LoginDto loginDto) {
+    HashMap<String, String> map = new HashMap<>();
+    map.put("token", authServer.login(loginDto));
+    return AjaxResult.success(map);
   }
 
 }

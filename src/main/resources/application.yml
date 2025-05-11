@@ -1,4 +1,5 @@
 spring:
+  version: 0.1.0
   application:
     name: Picture-Bed
     image_dir: D:/webServer/web_app/Picture-Bed/image/
@@ -47,3 +48,10 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# application.yml
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql

@@ -1,0 +1,12 @@
+${Ansi.CYAN}
+  ____  _               _             ___          _
+ / ___|| |__   __ _ _ __| | ___       |_ _|_ _  ___| |
+ \___ \| '_ \ / _` | '__| |/ _ \       | || ' \/ -_) |
+  ___) | | | | (_| | |  | |  __/       |___|_||_\___|_|
+ |____/|_| |_|\__,_|_|  |_|\___|
+
+${Ansi.BRIGHT_GREEN}
+:: Sharing Platform ::
+Version: ${parent.version}
+SpringBoot:${spring-boot.version}${AnsiColor.BRIGHT_RED}
+Java: ${java.version}

@@ -13,5 +13,5 @@ public interface authServer {
 
   void register(RegisterDto registerDto);
 
-  void login(LoginDto loginDto);
+  String  login(LoginDto loginDto);
 }
