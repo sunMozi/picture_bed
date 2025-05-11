@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: Picture-Bed
+    image_dir: D:/webServer/web_app/Picture-Bed/image/
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+  security:
+    user:
+      name: user
+      roles: admin
+      password: 123456
+
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/picture_bed
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+
+  mail:
+    host: smtp.qq.com
+    protocol: smtps
+    default-encoding: utf-8
+    # \u90AE\u7BB1
+    username: 3386384919@qq.com
+    password: yexceusktyaudadb
+    port: 465
+    properties:
+      mail:
+        stmp:
+          ssl:
+            enable: true
+
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.picturebed.model.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
