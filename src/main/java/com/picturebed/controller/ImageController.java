@@ -6,7 +6,6 @@ import com.picturebed.common.response.AjaxResult;
 import com.picturebed.model.entity.Image;
 import com.picturebed.service.ImageServer;
 import jakarta.annotation.Resource;
-import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
