@@ -2,6 +2,7 @@ package com.picturebed.controller;
 
 
 import com.picturebed.common.response.AjaxResult;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @description
  */
 @RestController
-
 public class userController {
 
   @GetMapping("/userinfo")

@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -32,9 +33,14 @@ public class RequestInterceptor implements HandlerInterceptor {
   private RedisUtils<User> redisUtils;
 
   @Override
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+      Object handler) {
+    if (HttpMethod.OPTIONS.toString().equalsIgnoreCase(request.getMethod())) {
+      return true;
+    }
     String token = request.getHeader("token");
-    System.out.println(token);
+
+
     if (!StringUtils.hasLength(token)) {
       throw new BusinessException(ResponseCodeEnum.CODE_403, "参数异常,请联系管理员");
     }

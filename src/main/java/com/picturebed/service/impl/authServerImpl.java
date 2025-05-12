@@ -54,7 +54,7 @@ public class authServerImpl implements authServer {
   }
 
   @Override
-  public String login(LoginDto loginDto) {
+  public HashMap<String, Object> login(LoginDto loginDto) {
 
     // TODO 登录md5 密码 加密
     User user = userMapper.selectUserByEmailAndPassWord(loginDto.getEmail(),
@@ -69,6 +69,9 @@ public class authServerImpl implements authServer {
     String token = jwtUtils.generateToken(map);
     redisUtils.setWithExpire(Constants.REDIS_KEY_USER_CODE + user.getEmail(), user, 7,
                              TimeUnit.DAYS);
-    return token;
+    HashMap<String, Object> result = new HashMap<>();
+    result.put("token", token);
+    result.put("user", user);
+    return result;
   }
 }

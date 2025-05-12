@@ -19,14 +19,14 @@ import net.coobird.thumbnailator.geometry.Positions;
 public class ThumbnailUtil {
 
   // 通用缩略图生成方法
-  public static byte[] generateThumbnail(byte[] original, int width, int height, boolean keepAspect)
+  public static byte[] generateThumbnail(byte[] original, int width, int height, boolean keepAspect , double thumb)
       throws IOException {
     try (
         InputStream is = new ByteArrayInputStream(original);
         ByteArrayOutputStream os = new ByteArrayOutputStream()
     ) {
 
-      Thumbnails.Builder<?> builder = Thumbnails.of(is).outputFormat("jpg").outputQuality(0.85);
+      Thumbnails.Builder<?> builder = Thumbnails.of(is).outputFormat("jpg").outputQuality(thumb);
 
       if (keepAspect) {
         builder.size(width, height).keepAspectRatio(true);

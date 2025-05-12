@@ -7,11 +7,9 @@ import com.picturebed.model.dto.RegisterDto;
 import com.picturebed.service.authServer;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
-import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -33,10 +31,8 @@ public class authController {
   }
 
   @PostMapping("/login")
-  public AjaxResult<Map<String, String>> login(@Valid @RequestBody LoginDto loginDto) {
-    HashMap<String, String> map = new HashMap<>();
-    map.put("token", authServer.login(loginDto));
-    return AjaxResult.success(map);
+  public AjaxResult<Map<String, Object>> login(@Valid @RequestBody LoginDto loginDto) {
+    return AjaxResult.success(authServer.login(loginDto));
   }
 
 }

@@ -8,6 +8,32 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class ImageMapperSqlProvider {
 
+  public String updateImage() {
+    return new SQL() {{
+      UPDATE("image");
+      SET("original_name = #{originalName}");
+      SET("is_public = #{isPublic}");
+      SET("update_date = #{updateDate}");
+      WHERE("id = #{id}");
+    }}.toString();
+  }
+
+  public String selectImageById() {
+    return new SQL() {{
+      SELECT("*");
+      FROM("image");
+      WHERE("id = #{id}");
+    }}.toString();
+  }
+
+  public String selectImageByName() {
+    return new SQL() {{
+      SELECT("*");
+      FROM("image");
+      WHERE("original_name = #{imageName}");
+    }}.toString();
+  }
+
   public String insertImage(Image image) {
     // 强制校验必要字段
     if (image.getUserId() == null) {
@@ -37,10 +63,13 @@ public class ImageMapperSqlProvider {
     }}.toString();
   }
 
-  public String selectImageList() {
+  public String selectImageList(String originalName) {
     return new SQL() {{
       SELECT("*");
       FROM("image");
+      if (originalName != null && !originalName.isEmpty()) {
+        WHERE("original_name like concat('%',#{originalName},'%')");
+      }
     }}.toString();
   }
 }

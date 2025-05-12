@@ -3,6 +3,7 @@ package com.picturebed.service;
 
 import com.picturebed.model.dto.LoginDto;
 import com.picturebed.model.dto.RegisterDto;
+import java.util.HashMap;
 
 /**
  * @author moZiA
@@ -13,5 +14,5 @@ public interface authServer {
 
   void register(RegisterDto registerDto);
 
-  String  login(LoginDto loginDto);
+  HashMap<String, Object> login(LoginDto loginDto);
 }

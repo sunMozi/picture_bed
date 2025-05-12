@@ -25,9 +25,16 @@ public class WebMvcConfig implements WebMvcConfigurer {
             .addPathPatterns("/**")
             .excludePathPatterns("/static/**")
             .excludePathPatterns("/login")
+
+
+            .excludePathPatterns("/swagger-ui.html")
+            .excludePathPatterns("/swagger-ui/**")
+            .excludePathPatterns("/v3/api-docs/**")
+
+
             .excludePathPatterns("/register")
-            .excludePathPatterns("/file/image/**")
-            .excludePathPatterns("/file/thumb/**");
+            .excludePathPatterns("/img/image/**")
+            .excludePathPatterns("/img/thumb/**");
   }
 
   @Override

@@ -53,7 +53,7 @@ public class fileServerImpl implements fileServer {
       String uuid = UUID.randomUUID().toString();
 
       Path uploadDir = Paths.get(appConfig.getImage_dir()).normalize().toAbsolutePath();
-      Path targetPath = uploadDir.resolve(uuid).normalize();
+      Path targetPath = Path.of(uploadDir.resolve(uuid).normalize() + "." + fileType);
 
       //  路径安全检查
       if (!targetPath.startsWith(uploadDir)) {

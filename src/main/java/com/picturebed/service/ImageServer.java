@@ -1,9 +1,9 @@
 package com.picturebed.service;
 
 
-import com.github.pagehelper.PageInfo;
-import com.picturebed.model.entity.Image;
-import java.util.List;
+import com.picturebed.model.dto.ImageDto;
+import jakarta.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * @author moZiA
@@ -13,5 +13,10 @@ import java.util.List;
 public interface ImageServer {
 
 
-  PageInfo<Image> imageAll(Integer pageNum, Integer pageSize);
+  Map<String, Object> imageAll(String name, Integer pageNum, Integer pageSize);
+
+
+  void getImageByName(String imageName, HttpServletResponse response, Double thumb);
+
+  void putImage(ImageDto imageDto);
 }
