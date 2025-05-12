@@ -80,7 +80,6 @@ public class fileServerImpl implements fileServer {
                          .isPublic(isPublic)
                          .createDate(LocalDateTime.now())
                          .updateDate(LocalDateTime.now())
-                         .storagePath(uploadDir.toString())
                          .build();
 
       //TODO 更新数据库数据

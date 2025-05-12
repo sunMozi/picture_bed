@@ -29,6 +29,5 @@ public class Image {
   private Boolean isPublic;
   private LocalDateTime createDate;
   private LocalDateTime updateDate;
-  private String storagePath;
 
 }

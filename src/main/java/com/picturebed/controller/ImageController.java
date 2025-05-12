@@ -2,6 +2,7 @@ package com.picturebed.controller;
 
 
 import com.picturebed.common.response.AjaxResult;
+import com.picturebed.common.response.RateLimit;
 import com.picturebed.common.response.enums.ResponseCodeEnum;
 import com.picturebed.exception.BusinessException;
 import com.picturebed.model.dto.ImageDto;
@@ -39,10 +40,12 @@ public class ImageController {
   }
 
   @GetMapping("/thumb/{imageName}")
+  @RateLimit(key = "user_api", limit = 20, timeout = 10)
   public void getThumbnail(@PathVariable String imageName, HttpServletResponse response) {
     imageServer.getImageByName(imageName, response, 0.1);
   }
 
+  @RateLimit(key = "user_api", limit = 5, timeout = 10)
   @GetMapping("/image/{imageName}")
   public void getOriginalImage(@PathVariable String imageName, HttpServletResponse response) {
     imageServer.getImageByName(imageName, response, 1.0);

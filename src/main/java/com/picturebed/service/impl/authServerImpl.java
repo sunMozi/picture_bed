@@ -40,7 +40,7 @@ public class authServerImpl implements authServer {
     System.out.println(registerDto);
     User user = userMapper.selectUserByEmail(registerDto.getEmail());
     if (user != null) {
-      throw new BusinessException(ResponseCodeEnum.CODE_601, "邮箱已经存在");
+      throw new BusinessException(ResponseCodeEnum.CODE_400, "邮箱已经存在");
     }
     User buildUser = User.builder()
                          .username(registerDto.getUsername())

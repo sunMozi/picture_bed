@@ -38,8 +38,8 @@ public class RequestInterceptor implements HandlerInterceptor {
     if (HttpMethod.OPTIONS.toString().equalsIgnoreCase(request.getMethod())) {
       return true;
     }
-    String token = request.getHeader("token");
 
+    String token = request.getHeader("token");
 
     if (!StringUtils.hasLength(token)) {
       throw new BusinessException(ResponseCodeEnum.CODE_403, "参数异常,请联系管理员");

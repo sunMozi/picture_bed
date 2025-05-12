@@ -21,11 +21,7 @@ public enum ResponseCodeEnum {
   CODE_403(403, "权限校验错误", HttpStatus.FORBIDDEN),
   CODE_404(404, "请求地址不存在", HttpStatus.NOT_FOUND),
   CODE_409(409, "数据冲突", HttpStatus.CONFLICT),
-
-  // 业务错误（6xx系列）
-  CODE_601(601, "信息已经存在", HttpStatus.CONFLICT),
-  CODE_602(602, "发送失败", HttpStatus.INTERNAL_SERVER_ERROR),
-
+  CODE_429(429, "请求次数过多", HttpStatus.TOO_MANY_REQUESTS),
   // 服务端错误
   CODE_500(500, "服务器内部错误", HttpStatus.INTERNAL_SERVER_ERROR);
 
