@@ -1,8 +1,10 @@
+server:
+  port: 9090
+
 spring:
-  version: 0.1.0
   application:
     name: Picture-Bed
-    image_dir: D:/webServer/web_app/Picture-Bed/image/
+    image_dir: /opt/picture_bed/image
 
   servlet:
     multipart:

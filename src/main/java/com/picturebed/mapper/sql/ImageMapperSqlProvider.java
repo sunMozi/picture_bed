@@ -49,7 +49,6 @@ public class ImageMapperSqlProvider {
       VALUES("file_type", "#{fileType}");
       VALUES("hash_sha256", "#{hashSha256}");
       VALUES("is_public", "#{isPublic}");
-      VALUES("storage_path", "#{storagePath}");
       VALUES("create_date", "#{createDate}");
       VALUES("update_date", "#{updateDate}");
     }}.toString();
